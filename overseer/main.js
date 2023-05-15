@@ -16,6 +16,8 @@ class Controller {
         this.current_project_i = 0;
         this.animating_transition = false;
         this.current_iframe = null;
+        this.loader = document.getElementById("loader");
+        this.loader_timeout = 0;
     }
 
     project_name() { return this.project_insertion_order[this.current_project_i] }
@@ -62,9 +64,13 @@ class Controller {
         let ctx = this;
         iframe.addEventListener("load", () => {
             iframe.contentWindow.eval('let _scr = document.createElement("script"); _scr.setAttribute("src", "__common.js"); document.body.append(_scr);')
-        
+            
+            clearTimeout(this.loader_timeout);
+            ctx.loader.style.display = "none";
+
             if (old_iframe === null) {
                 ctx.animating_transition = false;
+               
                 return;
             }
     
@@ -85,7 +91,9 @@ class Controller {
     
         });
        
-
+        this.loader_timeout = setTimeout(() => {
+            ctx.loader.style.display = "inline-block";
+        }, 1500)
         this.view.appendChild(iframe);
         this.current_iframe = iframe;
 
