@@ -1,0 +1,131 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+
+      .dg.ac {
+        z-index: 20 !important;
+      }
+
+      span {
+        font-family: 'Inter', sans-serif;
+      }
+
+      .float_par {
+        position: absolute;
+        top: 12%;
+        left: 35%;
+        z-index: 10;
+        font-size: 16pt;
+        background-color: white;
+        color: black;
+        padding: 10px;
+        border-radius: 20px;
+
+        opacity: 0;
+        transition: opacity 0.3s;
+        max-width: 50%;
+        padding: 30px;
+      }
+
+      #float_header {
+        position: absolute;
+        top: 5%;
+        left: 4%;
+        z-index: 10;
+        font-size: 35pt;
+        background-color: white;
+        color: black;
+        padding: 10px;
+        border-radius: 20px;
+
+        opacity: 0;
+        transition: opacity 0.3s;
+
+      }
+
+      .arrow {
+        position: absolute;
+        top: 2px;
+        left: 30%;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      hr {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border-style: solid;
+        border-width: 1.5px;
+      }
+
+      .icon {
+        display:  inline;
+        position:  relative;
+        top: 4px;
+      }
+
+
+      .paricon {
+        height: 18pt;
+        width: 18pt;
+      }
+  
+    </style>
+  </head>
+<body style="margin: 0;">
+  <canvas id="world" style="height:100%; width: 100%;">
+  </canvas>
+  <div id="float_header">
+    <span>
+      Viktor Veselý <hr> Resumé
+    </span>
+  </div>
+
+  <img src="arrow.png" class="arrow" id="arrow">
+  <div id="float_par" class="float_par">
+    <span>
+      <b style="margin-bottom: 15px; display: inline-block;">
+        Instructions
+      </b>
+      <br>
+      This site showcases my current/past/future projects in a semi-interactive manner.
+      <hr style="margin: 20px 0;">
+      Unfortunately the site <b>will not</b> show properly on mobile devices or on devices with weird screen dimensions.
+      <hr style="margin: 20px 0;">
+      The site is divided into <b><em>rows</em></b> each  <b><em>rows</em></b> corresponds to a <b><em>project</em></b>.
+      You can switch between <b><em>rows</em></b> with the up<img class="icon paricon" src="arrow-up.svg">/down<img class="icon paricon" src="arrow-up.svg" style="transform: rotate(180deg);"> arrow keys
+      <hr style="margin: 20px 0;">
+      Using the left<img class="icon paricon" src="arrow-up.svg" style="transform: rotate(-90deg);">/right<img class="icon paricon" src="arrow-up.svg" style="transform: rotate(90deg);"> arrow keys progresses the <b><em>project</em></b>'s story.
+      <hr style="margin: 20px 0;">
+      Try pressing the right<img class="icon paricon" src="arrow-up.svg" style="transform: rotate(90deg);"> arrow key
+    </span>
+  </div>
+
+  <div id="float_par_2" class="float_par">
+    <span>
+      <b style="margin-bottom: 15px; display: inline-block;">
+        Instructions #2
+      </b>
+      <br>
+      Almost all <b><em>projects</em></b> your are seeing here are <u>realtime simulations</u>, meaning that they can differ each time you switch between <b><em>projects</em></b>.
+      <hr style="margin: 20px 0;">
+      The particles you are seeing in the background can be controlled using the menu in the <u>upper-right corner</u>. The menu can be open by clicking the <em>"Open Controls"</em> button.
+      <hr style="margin: 20px 0;">
+      Try <u>dragging</u> the parameters and the simulation will automatically apply them. Have fun with it!
+      <hr style="margin: 20px 0;">
+      Press the right <img class="icon paricon" src="arrow-up.svg" style="transform: rotate(90deg);"> arrow key to hide all the text fields (<img class="icon paricon" src="arrow-up.svg" style="transform: rotate(-90deg);"> brings them back).
+    </span>
+  </div>
+  <script src="./clusters.js"></script>
+  <script src="./vector.js"></script>
+  <script src="./dat.gui.js"></script>
+  <script src="./particleTypes.js"></script>
+  <script src="./particle.js"></script>
+  <script src="./collision.js"></script>
+  <script src="./world.js"></script>
+  <script src="./controller.js"></script>
+</body>
+</html>

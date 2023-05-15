@@ -1,0 +1,76 @@
+* {
+    box-sizing: content-box;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+}
+
+#view {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+
+#view iframe {
+    position: absolute;
+}
+
+.anim_out_down {
+    animation-name: out_down;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+}
+
+.anim_in_down {
+    animation-name: in_down;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+}
+
+@keyframes out_down {
+    from {transform:  translateY(0);}
+    to {transform: translateY(-100vh);}
+}
+
+
+@keyframes in_down {
+    from {transform:  translateY(100vh);}
+    to {transform: translateY(0);}
+}
+
+.anim_out_up {
+    animation-name: out_up;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+}
+
+.anim_in_up {
+    animation-name: in_up;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+}
+
+.frame_shifted_down {
+    transform: translateY(100vh);
+}
+
+.frame_shifted_up{
+    transform: translateY(-100vh);
+}
+
+.frame_in_view{
+    transform: translateY(0);
+}
+
+@keyframes out_up {
+    from {transform: translateY(0);}
+    to {transform: translateY(100vh);}
+}
+
+
+@keyframes in_up {
+    from {transform:  translateY(-100vh);}
+    to {transform: translateY(0);}
+}

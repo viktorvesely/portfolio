@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hmm</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: white;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        #tooltip {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        #explanation {
+            background-color: white;
+            border-radius: 20px;
+            position: absolute;
+            display: none;
+            padding: 30px;
+            font-size: 30px;
+            width: 60vw;
+            max-width: 60vw;
+
+            top: 50vh;
+            left: 50vw;
+            transform: translate(-50%, -50%);
+        }
+
+        #tooltip:hover #explanation {
+            display: block;
+        }
+
+        #tooltip img {
+            width: 40px;
+            height: 40px;
+        }
+        
+        #tooltip:hover img {
+            transform: scale(1.1);
+        }
+
+        .expl {
+            display: none;
+        }
+
+        hr {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-style: solid;
+        border-width: 1.5px;
+      }
+
+      b.l_t {
+        color: rgb(0, 0, 0);
+      }
+
+      b.l_h {
+        color: rgb(239, 1, 207);
+      }
+
+      b.l_a {
+        color: rgb(40, 12, 255);
+      }
+
+      b.l_o {
+        color: rgb(255, 6, 6);
+      }
+
+      b.l_c {
+        color: rgb(1, 253, 77);
+      }
+
+      b.l_i {
+        color: rgb(255, 200, 0);
+      }
+
+      b.l_l {
+        color: rgb(142, 0, 158);
+      }
+
+      b.l_y {
+        color: rgb(246, 255, 0);
+      }
+
+      .square {
+        position: relative;
+        display: inline-block;
+        top: 4px;
+        width: 14pt;
+        height: 14pt;
+      }
+
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" src="mathjax.js"></script>    
+    
+</head>
+<body>
+    <div id="tooltip">
+        <img src="question_mark.svg">
+        <div id="explanation">
+            
+        </div>
+    </div>
+
+    <div id="e_title" class="expl">
+        <div style="text-align: center;">
+            Translating that to human readable language:
+            <hr style="margin: 20px 0;">
+            <b>Controlling irregular heart beats using artificial intelligence</b>
+        </div>
+    </div>
+
+    <div id="e_intro" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            In order for the AI to be able to treat arrhythmia, I needed a computer-model of the human heart (I could not experiment on live subjects).
+            This is extremely simplified <b>2D</b> representation of our heart.
+            <hr style="margin: 20px 0;">
+            The <span style="color: blue"><b>blue line</b></span> shows the heart-muscle contraption. When the <span style="color: blue"><b>line</b></span>
+            rises, the heart contracts, when it goes down, the heart relaxes. This periodic movement of our hearts ensures a healthy blood flow.
+        </div>
+    </div>
+
+    <div id="e_intro_extended" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            In order for the AI to be able to treat arrhythmia, I needed a computer-model of the human heart (I could not experiment on live subjects).
+            This is extremely simplified <b>2D</b> representation of our heart.
+            <hr style="margin: 20px 0;">
+            The <span style="color: blue"><b>blue line</b></span> shows the heart-muscle contraption. When the <span style="color: blue"><b>line</b></span>
+            rises, the heart contracts, when it goes down, the heart relaxes. This periodic movement of our hearts ensures a healthy blood flow.
+            <hr style="margin: 20px 0;">
+            The <span style="color: rgb(0, 255, 0)"><b>green line</b></span> represents the rate of change (the velocity) of the <span style="color: blue"><b>blue line</b></span>, 
+            meaning it shows the speed at which the heart-muscles contract/relax.
+        </div>
+    </div>
+
+    <div id="e_compare_2d" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            On the <u>left</u> you can see a healthy (regularly beating) heart. On the <u>right</u> is an <b>arrhythmic</b> heart.
+            <hr>
+            <b>Arrhythmia</b> causes hearth to beat <u>irregularly</u> and the muscle to contract <u>sporadically</u>,
+            resulting in poor oxygenation of the brain and the muscles.
+            <hr>
+            My task was to send precise electrical signals to the <b>arrhythmic</b> heart such that they would <u>regularize</u> the hearbeat.
+        </div>
+    </div>
+
+    <div id="e_phase" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            The same <b>2D</b> heart model can be visually represented in <u>multiple ways</u>, each offering different advantages.
+            <hr>
+            The upper graph is called the <u>time-domain representation</u> of the <b>arrhythmic</b> heart (same graph as on the previous slide).
+            The time flows <b>from left to right</b> and <em>2 lines</em> are needed to represent 1 heart.
+            <hr>
+            The lower graph displays the same heart but in a <u>phase-portrait representation</u>. The <em style="color: blue">x-axis</em> shows how much is the muscle contracted (a.k.a. the Action Potential)
+            and the <em style="color: rgb(0, 255, 0)">y-axis</em> shows the rate of change of the muscle contraption (a.k.a. the derivative of the Action Potential).
+            Time is only represented implicitly with the <b>white trail</b> and only <em>1 line</em> is needed to represent 1 heart. 
+            <hr>
+            It is important for you to understand that the two graphs really do represent <b>the same</b> underlying object.
+        </div>
+    </div>
+
+
+    <div id="e_chaos" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            Arrhythmic heart can behave as a <b class="l_c">c</b><b class="l_h">h</b><b class="l_a">a</b><b class="l_o">o</b><b class="l_t">t</b><b class="l_i">i</b><b class="l_c">c</b> system.
+            <b class="l_c">C</b><b class="l_h">h</b><b class="l_a">a</b><b class="l_o">o</b><b class="l_t">t</b><b class="l_i">i</b><b class="l_c">c</b> systems are extremely unpredictable, 
+            <b>microscopic</b> differences in the system will have major impact in the future (also called as <em>butterfly effect</em>).
+            <hr>
+            Here you can see the simulation of 30 different hearts with <b>microscopic</b> initial differences. You can fast-forward the simulation by pressing the right <img src="arrow-up.svg" style="transform: rotate(90deg); width: 16pt; height: 16pt; top: 4px; position: relative;"> arrow key,
+            to slow it down press the <img src="arrow-up.svg" style="transform: rotate(90deg); width: 16pt; height: 16pt; top: 4px; position: relative;"> again. After while you can see the how the hearts <b>separate</b>. To reset the simulation go back to the previous slide and come back.
+            <hr>
+            Controlling the arrhythmic heart (treating the arrhythmia) is, thus, difficult. Small differences in the injected <b style="color: rgb(232, 232, 6);">electric shocks</b> to the heart will set it to a completely <b>different trajectory</b>. 
+        </div>
+    </div>
+
+    <div id="e_complex" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            Since heart is a vastly complex organ, I have also implemented more detailed heart simulation. Simplifying a lot - heart muscle
+            is covered in neurons. Heart produces a periodical electrical shock in a special neuron called the <em><u>SA node</u></em>. The 
+            <em><u>SA node</u></em> produces a electrical signal which then propagates around the heart muscle tissue - contracting the muscle as the
+            signal propagates, conseqeuntly, producing the familiar heart sound that we all know.
+            <hr>
+            The simulation here works analogously. The heart is modelled as a grid of neuron cells which can propagate the electrical signal.
+            The brightly purple squares <div class="square" style="background-color: rgb(255, 0, 234);"></div> signify firing neurons and the black squares
+            <div class="square" style="background-color: black;"></div> the resting neurons.
+            <hr>
+            Each of the neuron cells is 8-dimensional (modelling it requires 8 independent numbers) system. There are 8x40=320 neuron cells in the grid, making
+            the model 8x320= <u>2560 dimensional</u> (modelling it requires 2560 independent numbers). In summary this model is <u>vastly more detailed</u> than the previous 2D model.
+            <hr>
+            Press the <img src="arrow-up.svg" style="transform: rotate(90deg); width: 16pt; height: 16pt; top: 4px; position: relative;"> key for further explanation of this slide.
+        </div>
+    </div>
+
+    <div id="e_scarred" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            On the left you can see the <u>healthy</u> version of the heart, the signal propagates <em>homogenously</em> and <em>periodically</em>.
+            Human hearts can have obstacles on their tissue: veins, scars, or just <em>heterogenous</em> tissue. They can cause the signal to separate
+            and behave <em>non-periodically</em>. In some cases a heavy scarring can even make the heart behave <b class="l_c">c</b><b class="l_h">h</b><b class="l_a">a</b><b class="l_o">o</b><b class="l_t">t</b><b class="l_i">i</b><b class="l_c">c</b><b class="l_a">a</b><b class="l_l">l</b><b class="l_l">l</b><b class="l_y">y</b>.
+            <hr>
+            The model on left mimics this scarred chaotic behaviour. The brightly green cells <div class="square" style="background-color: rgb(41, 255, 22);"></div> represent
+            <u>heavily scarred tissue</u> on which the signal propagates poorly. The dimly lit green cells <div class="square" style="background-color: rgb(11, 123, 1);"></div> represent
+            <u>light scarring</u> - the signal can propagate on such tissue, however, it does so in <u>slower fashion</u>.
+            <hr>
+            The signal in the <u>scarred heart</u> can wrap around the scar, colliding with the other part of the signal and causing interferences in the regular heart beating.
+            The scar was designed, such that it transforms the hear into a <b class="l_c">c</b><b class="l_h">h</b><b class="l_a">a</b><b class="l_o">o</b><b class="l_t">t</b><b class="l_i">i</b><b class="l_c">c</b> system - where negligible changes amplify over time (the <em>butterfly effect</em>).
+        </div>
+    </div>
+    
+    <div id="e_eqs" class="expl">
+        <div style="text-align: left;">
+            Here you can see <u>only some</u> of the mathematical equations that guide the complex, <u>2560 dimensional</u>, heart model. 
+        </div>
+    </div>
+
+
+    <div id="e_c_normal" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            Now comes the part that explains the idea behind the echo state network controller. It would be meaningless to try to explain the technology/math here in the hint-boxes, please read my <b>bachelor thesis</b> if you are interested.
+            I will only provide some <em>analogies</em> and heavily simplified <em>high-level overview</em> of my methods.
+            <hr>
+            The controller (also refered to as the echo state network controller, or <em>ESNc</em>) works <u>similarly to a pace-maker</u> - sending small <b style="color: rgb(232, 232, 6);">electric shocks</b> to the heart to guide the propagation of the electrical signal.
+            The ESNc contoller recives as input: 
+            <ol>
+                <li>The <b>current state</b> of the heart - usually the <u>irregular/chaotic heart</u> </li> 
+                <li>The <b>desired state</b> of the heart - which is just a "recording" of the <u>healthy heart</u> </li>
+            </ol> 
+            Consequently, it outputs:
+            <ol>
+                <li>The <b>placement</b> and the <b>strength</b> of the <b style="color: rgb(232, 232, 6);">electric shocks</b> which are required to transition the 
+                <u>irregular/chaotic heart</u> into a <u>healthy heart</u></li>
+            </ol>
+        </div>
+    </div>
+
+    <div id="e_why" class="expl">
+        <div style="text-align: left;">
+           This is just an explanation why I chose the <u>echo state network</u> technology for my thesis.
+        </div>
+    </div>
+
+    <div id="e_actions" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            As with every AI, the controller <u>needs to be trained </u>in order to understand how do the <b style="color: rgb(232, 232, 6);">electric shocks</b>
+            influence the dynamics of the heart. The controller can only inject <b style="color: rgb(232, 232, 6);">shocks</b> on <u>specific places</u> on the heart,
+            those places are marked on the left graph.
+            <hr>
+            I have created random <em>actions</em> (<em>actions</em>=<b style="color: rgb(232, 232, 6);">electric shocks</b>), as seen on the right graph. 
+            Each line represents <u>the amount of current</u> injected at the coresponding point in the heart.
+            <hr>
+            The random <em>actions</em> were then applied to the heart and the controller observed how the heart reacts to those <em>actions</em>.
+            The goal is that the controller understands which <em>action</em> it should take in order to reach our <b>desired state</b>.
+        </div>
+    </div>
+
+    <div id="e_exploitation" class="expl">
+        <div style="text-align: left;">
+            The slide can be summarized to: "If <b>trained successfully</b>, the controller can be instructed to <b>treat</b> heart arrhythmia"
+        </div>
+    </div>
+
+    <div id="e_arch_heart" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            Designing the architecture of the controller is essential for successfully treating arrhythmia, thus, I have proposed <b>3 controller designs</b>. 
+            <hr>
+            Firstly, exactly like the heart, the contoller is a <em>dynamical system</em> (evolving over time). As disscussed in the previous slides,
+            the controller is asked <u>comprehend the dynamics</u> of the heart. Consequently, modelling the dynamics of the controller, such that they
+            match the dynamics of the heart allows the controller to learn <u>quicker</u> (at least in theory).
+            <hr>
+            Therefore, the controller is split into two parts (signified by the two gray blobs on the graph). The lower part is <u>designed to mimic
+            the dynamics of the heart</u> . The upper part is <u>intended to be a general processing unit</u> with non-specific dynamics.
+            <hr>
+            The hope is that the lower part can be dedicated for <u>only predicting the dynamics of the heart</u> whilst the upper could be used for <u>calculating the appropriate <em>action</em></u>.
+        </div>
+    </div>
+
+    <div id="e_arch_local" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            Secondly, the premise of this controller design is that a <em>action</em> applied to the heart will <b>mostly</b> influence the <b>close surroundings</b> around the injection point of the <em>action</em>.
+            <hr>
+            Consequently, I have created numerous <b>independent</b> processing units (again, signified by the gray blobs) which only observe and influence a small area on the heart.
+            <hr>
+            Having independent processing units allows me to train them in <b>parallel</b>, which <b>decreases the training time</b>, which enables me to <b>dedicate more <em>neurons</em></b> to each of the processing units.
+            <hr>
+            Since each of the processing units only "sees" a slice of the entire heart, it can never make a decision (on what <em>action</em> to take) based on the entire heart dynamics.
+        </div>
+    </div>
+
+
+    <div id="e_arch_pca" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            Thirdly, the design of this controller tries to add a pre-processing step to the stata of the heart in order to simplify the controlling process.
+            <hr>
+            Recall, that the each heart state is expressed as an <u>2560 dimensional</u> number - which is a lot.
+            Imagine receiving <b>2560</b> numbers <b>20</b> times per second. Now your task is to decide, based on those numbers, what are the optimal <b style="color: rgb(232, 232, 6);">electric shocks</b>
+            that would treat arrhythmia? Not an easy job.
+            <hr>
+            Therefore, the <em>principal component analysis</em> (PCA) is
+            performed which allows me to <u>reduce the number of dimensions</u> to any desired number 
+            whilst <u>maintaining as much information as possible</u> (obviously some information wil be lost).
+            This compactified representations allows the model to learn quicker.
+        </div>
+    </div>
+
+    <div id="e_errors" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            Measuring the performance of the model (controller) will be done on two metrics:
+            <ol>
+                <li><b>Validation error</b> - The model will be shown the <b>current</b> and the <b>desired</b> state of the heart.
+                It will be then asked to output the <em>action</em> that will bring the heart from the <b>current</b> state to the <b>desired</b> state.
+                The controller's <em>action</em> will <b>not</b> be applied to the heart, it will only be compared to the <u>optimal <em>action</em></u> (generating the <b>validation error</b>).
+                The <u>optimal <em>action</em></u> will be applied to the heart.</li>
+
+                <li><b>Testing error</b> - The model will be shown the same information as with validation erorr, however, the model's <em>action</em> <b>will</b> be
+                applied to the heart. The <b>testing error</b> will then be calculated as a difference between the <u>actual state</u> and the <u>desired state</u>. 
+                This metric is much harsher (also much more important) for the model to optimize, since even slightest error in the model's <em>action</em> will result in huge differences in states over time (recall the <em>butterfly effect</em>).</li>
+            </ol>
+        </div>
+    </div>
+
+    <div id="e_results" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            The first model design (<em>Heart-like</em>) wasn't able to optimize the <b>validation error</b>.
+            <hr>
+            The last two model designs (<em>Local</em> and <em>PCA</em>) were mostly successfull in optimizing the <b>validation error</b>.
+            <hr>
+            None of the model designs were able to optimize the <b>testing error</b> at all.
+        </div>
+    </div>
+
+    <div id="e_val" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            This graph shows how accurately could the models approximate the <u>optimal <em>action</em></u>.
+            <hr>
+            The <b style="color: blue;">blue line</b> showcases the model's <em>action</em> and the <b style="color: orange;">orange line</b> is the <u>optimal <em>action</em></u>.
+        </div>
+    </div>
+
+    <div id="e_test" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+            This graph shows how accurately could the models guide the heart to the <b>desired</b> state.
+            <hr>
+            The <b style="color: blue;">blue line</b> showcases the heart's state under the influence of the model's <em>actions</em>.
+            The <b style="color: orange;">orange line</b> is the <b>desired</b> state.
+        </div>
+    </div>
+
+    <div id="e_dis" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+           Even though the controller could approximate the <u>optimal <em>action</em></u> accurately. The controller <b>failed</b> 
+           to due to the highly chaotic/non-lineal/dimensional nature of the model - which was simply out of the scope for a <em>bachelor's thesis</em>.
+           <hr>
+           However, to end on a good note, the model was also tested on two different tasks:
+           <ol>
+                <li><b>Pendulum</b> balacing task - where the task is to balance the pendulum in an upright position on a moving platoform.</li>
+                <li>The <b>simple 2D chaotic heart model</b> - where the heart is represented only in 2 dimensions (recall the beginning of the presentation). 
+                    The arrhythmic heart is chaotic (so the <em>butterfly effect</em> still applies) and the task is to treat the arrhythmic heart. </li>
+           </ol> 
+           The model performed excellent on both tasks, achieving superior <b>testing</b> and <b>validation</b> errors.
+           <hr>
+           There is one more slide ; )
+        </div>
+    </div>
+
+    <div id="e_end" class="expl">
+        <div style="text-align: left; font-size: 15pt;">
+           Here you can see that the model is <u>able</u> to treat the arrhytmia in the <b>2D heart version</b>. 
+           <hr>
+           The <b style="color: blue;">blue line</b> showcases the heart's state under the influence of the model's <em>actions</em>.
+            The <b style="color: orange;">orange line</b> is the <b>desired</b> state.
+            <hr>
+            The model follows the desired trajectory almost perfectly.
+        </div>
+    </div>
+
+    <div id="e_showcase" class="expl" style="background-color: black;">
+        <div style="text-align: center; color: white;">
+            This is an <u>example tooltip.</u>
+        </div>
+    </div>
+
+
+    <style>
+        #entry {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+        } 
+
+        #entry-text {
+            color: black;
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            font-size: 18pt;
+
+            position: relative;
+            top: 50vh;
+            left: 50vw;
+            max-width: 90%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+
+    <div id="entry_container" class="expl">
+        <div id="entry">
+            <div id="entry-text">
+                <h2>Bachelor's thesis</h2>
+                
+                I used the following presentation for defending my thesis. It provides only a <u>high-level overview</u> of the thesis.
+                If you are interested, I highly recommend reading <a target="_blank" href="https://fse.studenttheses.ub.rug.nl/28341/1/chaos_control_thesis_vesely.pdf">the actual thesis here</a>
+                (it pressuposes the reader's basic knowledge about: <em>calculus</em>, <em>linear algebra</em>, <em>statistics</em>, and <em>dynamic systems</em>). 
+                <hr>
+                Lot of the information is missing from the slides, since I have explained the slides <em>verbally</em>. Thus, I have added <em>tooltips</em> to each slide that will explain the presented content.
+                The <em>tooltips</em> <img src="question_mark_black.svg" style="width: 19pt; height: 19pt; position: relative; top: 4px;"> are located in the upper-left corner and can be displayed by <u>hovering your mouse over them</u>.
+                There is also <em>tooltip</em> on this slide as well -> <b>try it</b>!
+                <hr>
+                Again, to progress/revert the presentation use the <img style="width: 19pt; height: 19 pt; position: relative; top: 4px; transform: rotate(-90deg);" src="arrow-up.svg">  <img style="width: 19pt; height: 19 pt; position: relative; top: 4px; transform: rotate(90deg);" src="arrow-up.svg"> keys and
+                press the <img style="width: 19pt; height: 19 pt; position: relative; top: 4px;" src="arrow-up.svg"> <img style="width: 19pt; height: 19 pt; position: relative; top: 4px; transform: rotate(180deg);" src="arrow-up.svg"> keys to switch between the projects.
+            </div>
+        </div>
+    </div>
+    
+
+    <canvas id="screen"></canvas>
+    <script src="portrait.js"></script>
+    <script src="discussion.js"></script>
+    <script src="graph.js"></script>
+    <script src="phasetime.js"></script>
+    <script src="chaos.js"></script>
+    <script src="Event.js"></script>
+    <script src="h_video.js"></script>
+    <script src="c_video.js"></script>
+    <script src="rho.js"></script>
+    <script src="heart.js"></script>
+    <script src="twoHearts.js"></script>
+    <script src="imageslide.js"></script>
+    <script src="htmlslide.js"></script>
+    <script src="discSlide.js"></script>
+    <script src="actor_video.js"></script>
+    <script src="actor.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
