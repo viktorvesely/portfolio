@@ -37,6 +37,7 @@ register_project("chaos");
 register_project("durko");
 register_subfolder("durko", "js");
 register_subfolder("durko", "css");
+register_project("sda");
 
 app.get('/:file', (req, res) => {
   res.sendFile(`${__dirname}/overseer/${req.params["file"]}`);
@@ -48,5 +49,5 @@ app.get("/", (req, res) => {
 
 
 app.listen(port, () => {
-  console.log(`Test app ${port}`)
+  console.log(`Locally at port=${port}`)
 })

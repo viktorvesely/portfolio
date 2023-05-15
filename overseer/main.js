@@ -93,7 +93,7 @@ class Controller {
        
         this.loader_timeout = setTimeout(() => {
             ctx.loader.style.display = "inline-block";
-        }, 1500)
+        }, 1000)
         this.view.appendChild(iframe);
         this.current_iframe = iframe;
 
@@ -159,6 +159,9 @@ var controller = new Controller(
         "index.html"
     ).register_project(
         "durko",
+        "index.html"
+    ).register_project(
+        "sda",
         "index.html"
     ).register_project(
         "chaos",

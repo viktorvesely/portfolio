@@ -10,12 +10,106 @@
         body {
             margin: 0;
             background-color: #21D46E;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        
+        #view {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        #view span {
+            font-size: 25pt;
+            padding: 5px 0;
+            width: max-content;
+            max-height: 26pt;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            display: inline-block;
+            
+            position: absolute;
+            top: 75vh;
+            transform: translateY(-50%);
+            color: black;
+            
+        }
+
+        .block {
+            height: 40pt;
+            width: 10vw;
+            position: absolute;
+            top: 75vh;
+            transform: translateY(-50%);
+        }
+
+        .block.left {
+            left: 0px;
+            background: linear-gradient(90deg, rgba(33,212,110,1) 40%, rgba(255,255,255,0) 100%);
+        }
+
+        .block.right {
+            right: 0px;
+            background: linear-gradient(-90deg, rgba(33,212,110,1) 40%, rgba(255,255,255,0) 100%);
+        }
+
+        .word {
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        * {
+            box-sizing: content-box;
+        }
+
+        #view .h1 {
+            text-underline-offset: 15px;
+            line-height: 160%;
+            font-size: 34pt;
+            color: white;
+            position: absolute;
+            
+            left: 5vw;
+            top: 40px;
+        }
+
+        #view .p1 {
+            color: #FFD800;
+            font-size: 24pt;
+            font-weight: bold;
+            position: absolute;
+            top: 42%;
+            left: 50vw;
+            transition: opacity 0.4;
+            transform: translateX(-50%);
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-     
+    <div id="view"></div>
+
+    <div class="slide" id="training">
+        <h1 class="h1"><u>How does an artificial <br> intelligence understand text?</u></h1>
+        
+        <p class="p1"></p>
+        <div class="left block"></div>
+        <span>
+            
+        </span>
+        <div class="right block"></div>
+    </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
